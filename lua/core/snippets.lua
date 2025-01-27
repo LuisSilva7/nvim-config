@@ -1,7 +1,4 @@
--- Custom code snippets for different purposes
-
 -- Prevent LSP from overwriting treesitter color settings
--- https://github.com/NvChad/NvChad/issues/1907
 vim.highlight.priorities.semantic_tokens = 95 -- Or any number lower than 100, treesitter's priority level
 
 -- Appearance of diagnostics
@@ -17,7 +14,7 @@ vim.diagnostic.config {
   underline = false,
   update_in_insert = true,
   float = {
-    source = 'always', -- Or "if_many"
+    source = 'if_many',
   },
   -- Make diagnostic background transparent
   on_ready = function()
