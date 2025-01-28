@@ -1,7 +1,7 @@
 -- Left column and similar settings
 vim.opt.number = true -- Make line numbers default (default: false)
 vim.opt.relativenumber = true -- Set relative numbered lines (default: false)
-vim.opt.numberwidth = 4 -- Set number column width to 2 {default 4} (default: 4)
+vim.opt.numberwidth = 3 -- Set number column width to 2 {default 4} (default: 4)
 vim.opt.signcolumn = 'yes' -- Keep signcolumn on by default (default: 'auto')
 vim.opt.wrap = false -- Display lines as one long line (default: true)
 vim.opt.scrolloff = 6 -- Minimal number of screen lines to keep above and below the cursor (default: 0)
