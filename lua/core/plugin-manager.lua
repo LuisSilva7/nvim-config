@@ -11,21 +11,21 @@ end
 vim.opt.rtp:prepend(lazypath)
 
 require('lazy').setup {
-  require 'plugins.neotree',
+  require 'plugins.alpha',
   require 'plugins.colorthemes.nord',
+  require 'plugins.comments',
+  require 'plugins.indent-blankline',
+  require 'plugins.gitsigns',
   require 'plugins.bufferline',
   require 'plugins.lualine',
-  require 'plugins.treesitter',
+  require 'plugins.neotree',
   require 'plugins.telescope',
+  require 'plugins.harpoon',
   require 'plugins.lsp',
+  require 'plugins.treesitter',
   require 'plugins.autocompletion',
   require 'plugins.autoformatting',
-  require 'plugins.gitsigns',
-  require 'plugins.harpoon',
-  require 'plugins.alpha',
-  require 'plugins.indent-blankline',
   require 'plugins.misc',
-  require 'plugins.comments',
   require 'plugins.dap',
   require 'plugins.springboot-nvim',
 }
