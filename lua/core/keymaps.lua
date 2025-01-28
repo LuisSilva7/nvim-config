@@ -65,8 +65,13 @@ vim.keymap.set('n', '<leader>lw', '<cmd>set wrap!<CR>', opts)
 vim.keymap.set('v', '<', '<gv', opts)
 vim.keymap.set('v', '>', '>gv', opts)
 
--- Keep last yanked when pasting
-vim.keymap.set('v', 'p', '"_dP', opts)
+-- Copy to system clipboard
+vim.keymap.set('v', '<leader>y', '"+y', { noremap = true, silent = true, desc = 'Copy to system clipboard' })
+vim.keymap.set('n', '<leader>y', '"+yy', { noremap = true, silent = true, desc = 'Copy line to system clipboard' })
+
+-- Copy from system clipboard
+vim.keymap.set('n', '<leader>p', '"+p', { noremap = true, silent = true, desc = 'Paste from system clipboard' })
+vim.keymap.set('v', '<leader>p', '"+p', { noremap = true, silent = true, desc = 'Paste from system clipboard in visual mode' })
 
 -- Diagnostic keymaps
 vim.keymap.set('n', '[d', vim.diagnostic.goto_prev, { desc = 'Go to previous diagnostic message' })

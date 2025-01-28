@@ -20,7 +20,7 @@ vim.o.linebreak = true -- Companion to wrap, don't split words (default: false)
 
 -- General behaviours
 vim.opt.backup = false -- Creates a backup file (default: false)
-vim.opt.clipboard = 'unnamedplus' -- Sync clipboard between OS and Neovim. (default: '')
+vim.opt.clipboard = '' -- Sync clipboard between OS and Neovim. (sync: 'unnamedplus')
 vim.opt.conceallevel = 0 -- So that `` is visible in markdown files (default: 1)
 vim.opt.fileencoding = 'utf-8' -- The encoding written to a file (default: 'utf-8')
 vim.opt.mouse = 'a' -- Enable mouse mode (default: '')
