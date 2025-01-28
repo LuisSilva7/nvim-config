@@ -78,3 +78,20 @@ vim.keymap.set('n', '[d', vim.diagnostic.goto_prev, { desc = 'Go to previous dia
 vim.keymap.set('n', ']d', vim.diagnostic.goto_next, { desc = 'Go to next diagnostic message' })
 vim.keymap.set('n', '<leader>d', vim.diagnostic.open_float, { desc = 'Open floating diagnostic message' })
 vim.keymap.set('n', '<leader>q', vim.diagnostic.setloclist, { desc = 'Open diagnostics list' })
+
+-- Create file
+vim.keymap.set('n', '<leader>nf', function()
+  local filename = vim.fn.input 'New file: '
+  if filename and filename ~= '' then
+    vim.cmd('e ' .. filename)
+  end
+end, { desc = 'Create a new file' })
+
+-- Create directory
+vim.keymap.set('n', '<leader>nd', function()
+  local dirname = vim.fn.input 'New directory: '
+  if dirname and dirname ~= '' then
+    vim.fn.mkdir(dirname, 'p')
+    print('Directory created: ' .. dirname)
+  end
+end, { desc = 'Create a new directory' })
