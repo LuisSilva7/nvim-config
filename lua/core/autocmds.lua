@@ -22,3 +22,15 @@ vim.api.nvim_create_autocmd('BufEnter', {
     vim.opt.formatoptions = vim.opt.formatoptions - { 'c', 'r', 'o' }
   end,
 })
+
+vim.api.nvim_create_autocmd('CursorMoved', {
+  pattern = '*',
+  callback = function()
+    local total_lines = vim.api.nvim_buf_line_count(0)
+    local current_line = vim.api.nvim_win_get_cursor(0)[1]
+
+    if current_line >= total_lines - 12 then
+      vim.cmd 'normal! zz'
+    end
+  end,
+})
