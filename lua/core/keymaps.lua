@@ -75,3 +75,6 @@ vim.keymap.set('n', '<leader>nd', function()
     print('Directory created: ' .. dirname)
   end
 end, { desc = 'Create a new directory' })
+
+-- Add JSON tags to a struct
+vim.keymap.set('n', '<leader>gjt', ':GoTagAdd json<CR>', { silent = true, noremap = true, desc = 'Add JSON tags to struct' })
