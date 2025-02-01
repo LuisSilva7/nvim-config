@@ -6,22 +6,6 @@ return {
     'nvim-tree/nvim-web-devicons',
     'MunifTanjim/nui.nvim',
     '3rd/image.nvim',
-    {
-      's1n7ax/nvim-window-picker',
-      version = '2.*',
-      config = function()
-        require('window-picker').setup {
-          filter_rules = {
-            include_current_win = false,
-            autoselect_one = true,
-            bo = {
-              filetype = { 'neo-tree', 'neo-tree-popup', 'notify' },
-              buftype = { 'terminal', 'quickfix' },
-            },
-          },
-        }
-      end,
-    },
   },
   config = function()
     vim.fn.sign_define('DiagnosticSignError', { text = ' ', texthl = 'DiagnosticSignError' })
@@ -131,7 +115,7 @@ return {
           ['w'] = 'open_with_window_picker',
           ['C'] = 'close_node',
           ['z'] = 'close_all_nodes',
-          -- ['Z'] = 'expand_all_nodes',
+          ['Z'] = 'expand_all_nodes',
           ['a'] = {
             'add',
             config = {
