@@ -14,6 +14,8 @@ return {
         none_ls.builtins.formatting.prettier, -- JS, HTML, CSS, others
         none_ls.builtins.formatting.black, -- Python
         none_ls.builtins.formatting.goimports, -- Go
+        none_ls.builtins.formatting.rustfmt, -- Rust
+        none_ls.builtins.formatting.clang_format, -- C/C++
         none_ls.builtins.formatting.shfmt, -- Shell scripts
       },
       on_attach = function(client, bufnr)
@@ -35,6 +37,8 @@ return {
         'prettier',
         'black',
         'goimports',
+        'rustfmt',
+        'clang_format',
         'shfmt',
       },
       automatic_installation = true,

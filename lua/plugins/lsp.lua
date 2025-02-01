@@ -71,7 +71,15 @@ return {
       clangd = {},
       gopls = {},
       -- pyright = {},
-      -- rust_analyzer = {},
+      rust_analyzer = {
+        settings = {
+          ['rust-analyzer'] = {
+            cargo = {
+              allFeatures = true,
+            },
+          },
+        },
+      },
       -- ... etc. See `:help lspconfig-all` for a list of all the pre-configured LSPs
       ts_ls = {},
       ruff = {},
