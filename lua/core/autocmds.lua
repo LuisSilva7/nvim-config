@@ -1,3 +1,16 @@
+-- Prevent LSP from overwriting treesitter color settings
+vim.highlight.priorities.semantic_tokens = 95 -- Or any number lower than 100, treesitter's priority level
+
+-- Highlight on yank
+local highlight_group = vim.api.nvim_create_augroup('YankHighlight', { clear = true })
+vim.api.nvim_create_autocmd('TextYankPost', {
+  callback = function()
+    vim.highlight.on_yank()
+  end,
+  group = highlight_group,
+  pattern = '*',
+})
+
 -- Setup our JDTLS server any time we open up a java file
 vim.cmd [[
     augroup jdtls_lsp
