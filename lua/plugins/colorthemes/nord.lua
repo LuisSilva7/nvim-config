@@ -1,29 +1,10 @@
-local function ColorMyPencils(color)
-  color = color or 'nord' -- Default color scheme is Nord if not specified
-  require('nord').set()
-end
-
-local function ToggleBackground(color)
-  color = color or 'nord' -- Default color scheme is Nord if not specified
-
-  if color == 'nord' then
-    local bg_transparent = true
-    local toggle_transparency = function()
-      bg_transparent = not bg_transparent
-      vim.g.nord_disable_background = bg_transparent
-      vim.cmd [[colorscheme nord]] -- Reapply Nord theme after toggling transparency
-    end
-
-    -- Set keymap for toggling background transparency for Nord
-    vim.keymap.set('n', '<leader>bg', toggle_transparency, { noremap = true, silent = true })
-  end
-end
-
 return {
   'shaunsingh/nord.nvim',
+  name = 'nord',
   lazy = false,
   priority = 1000,
   config = function()
+    -- Nord theme settings
     vim.g.nord_contrast = true
     vim.g.nord_borders = false
     vim.g.nord_disable_background = true
@@ -32,9 +13,18 @@ return {
     vim.g.nord_bold = false
 
     -- Apply Nord theme
-    ColorMyPencils 'nord'
+    require('nord').set()
 
-    -- Activate Background Toggle
-    ToggleBackground 'nord'
+    -- Function to toggle background transparency
+    local bg_transparent = true
+    local toggle_transparency = function()
+      bg_transparent = not bg_transparent
+      vim.g.nord_disable_background = bg_transparent
+      vim.cmd [[colorscheme nord]] -- Reapply Nord theme after toggling transparency
+    end
+
+    -- Map key to toggle background transparency
+    vim.keymap.set('n', '<leader>bg', toggle_transparency, { noremap = true, silent = true })
   end,
 }
+

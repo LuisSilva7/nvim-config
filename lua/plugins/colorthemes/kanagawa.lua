@@ -1,41 +1,40 @@
 return {
   'rebelot/kanagawa.nvim',
+  name = 'kanagawa',
   lazy = false,
   priority = 1000,
   config = function()
+    -- Kanagawa colorscheme settings
     require('kanagawa').setup {
-      compile = false, -- enable compiling the colorscheme
-      undercurl = true, -- enable undercurls
+      compile = false, -- Enable compiling the colorscheme
+      undercurl = true, -- Enable undercurls
       commentStyle = { italic = true },
       functionStyle = {},
       keywordStyle = { italic = true },
       statementStyle = { bold = true },
       typeStyle = {},
-      transparent = false, -- do not set background color
-      dimInactive = false, -- dim inactive window `:h hl-NormalNC`
-      terminalColors = true, -- define vim.g.terminal_color_{0,17}
-      colors = { -- add/modify theme and palette colors
+      transparent = false, -- Do not set background color
+      dimInactive = false, -- Dim inactive window ':h hl-NormalNC'
+      terminalColors = true, -- Define vim.g.terminal_color_{0,17}
+      colors = { -- Add/modify theme and palette colors
         palette = {},
         theme = { wave = {}, lotus = {}, dragon = {}, all = {} },
       },
-      overrides = function(colors) -- add/modify highlights
-        return {}
-      end,
       theme = 'wave', -- Load "wave" theme when 'background' option is not set
-      background = { -- map the value of 'background' option to a theme
-        dark = 'wave', -- try "dragon" !
+      background = { -- Map the value of 'background' option to a theme
+        dark = 'wave', -- Try "dragon"!
         light = 'lotus',
       },
     }
 
     -- Set options 'laststatus' and 'cmdheight' before loading the theme
-    vim.opt.laststatus = 3 -- global statusline
-    vim.opt.cmdheight = 1 -- default command-line height
+    vim.opt.laststatus = 3 -- Global statusline
+    vim.opt.cmdheight = 1 -- Default command-line height
 
     -- Load Kanagawa colorscheme
     vim.cmd 'colorscheme kanagawa'
 
-    -- Add keymap for toggling background transparency
+    -- Function to toggle background transparency
     local bg_transparent = false
     local toggle_transparency = function()
       bg_transparent = not bg_transparent
@@ -54,3 +53,4 @@ return {
     end, { desc = 'Compile the Kanagawa colorscheme after changes' })
   end,
 }
+

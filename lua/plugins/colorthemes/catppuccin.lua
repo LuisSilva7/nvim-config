@@ -13,40 +13,22 @@ return {
       transparent_background = false, -- Disable background transparency by default
       show_end_of_buffer = false, -- Disable '~' at the end of buffers
       term_colors = false, -- Disable terminal colors
-      dim_inactive = {
-        enabled = false, -- Do not dim inactive windows
-        shade = 'dark',
-        percentage = 0.15,
-      },
+      dim_inactive = { enabled = false }, -- Do not dim inactive windows
       no_italic = false, -- Allow italics
       no_bold = false, -- Allow bold
       no_underline = false, -- Allow underlines
       styles = { -- Customize styles for syntax groups
         comments = { 'italic' },
         conditionals = { 'italic' },
-        loops = {},
-        functions = {},
-        keywords = {},
-        strings = {},
-        variables = {},
-        numbers = {},
-        booleans = {},
-        properties = {},
-        types = {},
-        operators = {},
       },
-      color_overrides = {}, -- No color overrides
-      custom_highlights = {}, -- No custom highlights
       default_integrations = true, -- Use default plugin integrations
       integrations = {
         cmp = true, -- Enable nvim-cmp integration
         gitsigns = true, -- Enable Git signs integration
         nvimtree = true, -- Enable NvimTree integration
         treesitter = true, -- Enable Treesitter integration
-        notify = false, -- Disable Notify integration
         mini = {
           enabled = true, -- Enable Mini plugin integration
-          indentscope_color = '',
         },
       },
     }
@@ -68,3 +50,4 @@ return {
     vim.keymap.set('n', '<leader>bg', toggle_transparency, { noremap = true, silent = true })
   end,
 }
+
