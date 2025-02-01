@@ -1,5 +1,4 @@
 return {
-  -- Configuration for gitsigns.nvim with customized signs
   {
     'lewis6991/gitsigns.nvim',
     opts = {
@@ -19,15 +18,12 @@ return {
       },
     },
     config = function()
-      -- Configure gitsigns
       require('gitsigns').setup {}
 
       -- Keymap to preview changes (hunks) in normal mode
       vim.keymap.set('n', '<leader>gh', ':Gitsigns preview_hunk<CR>', { desc = '[G]it Preview [H]unk' })
     end,
   },
-
-  -- Configuration for vim-fugitive
   {
     'tpope/vim-fugitive',
     config = function()

@@ -17,12 +17,14 @@ vim.api.nvim_create_autocmd('BufReadPost', {
   end,
 })
 
+-- Dont't create new lines with comments
 vim.api.nvim_create_autocmd('BufEnter', {
   callback = function()
     vim.opt.formatoptions = vim.opt.formatoptions - { 'c', 'r', 'o' }
   end,
 })
 
+-- Keep 12 lines of space at the end of the file
 vim.api.nvim_create_autocmd('CursorMoved', {
   pattern = '*',
   callback = function()

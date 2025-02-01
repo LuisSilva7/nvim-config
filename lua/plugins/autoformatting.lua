@@ -8,11 +8,10 @@ return {
     local none_ls = require 'null-ls'
     local mason_null_ls = require 'mason-null-ls'
 
-    -- Configuração de null-ls
     none_ls.setup {
       sources = {
         none_ls.builtins.formatting.stylua, -- Lua
-        none_ls.builtins.formatting.prettier, -- JS, HTML, CSS
+        none_ls.builtins.formatting.prettier, -- JS, HTML, CSS, others
         none_ls.builtins.formatting.black, -- Python
         none_ls.builtins.formatting.goimports, -- Go
         none_ls.builtins.formatting.shfmt, -- Shell scripts
@@ -30,7 +29,6 @@ return {
       end,
     }
 
-    -- Configuração de mason-null-ls
     mason_null_ls.setup {
       ensure_installed = {
         'stylua',
