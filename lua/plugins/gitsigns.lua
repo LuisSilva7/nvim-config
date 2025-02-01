@@ -32,7 +32,7 @@ return {
       -- Keymap to add all files to the staging area
       vim.keymap.set('n', '<leader>gA', ':Git add .<cr>', { desc = '[G]it Add [A]ll' })
       -- Keymap to add the current file to the staging area
-      vim.keymap.set('n', '<leader>ga', ':Git add<cr>', { desc = '[G]it [A]dd' })
+      vim.keymap.set('n', '<leader>ga', ':Git add %<cr>', { desc = '[G]it [A]dd' })
       -- Keymap to commit the current changes
       vim.keymap.set('n', '<leader>gc', ':Git commit<cr>', { desc = '[G]it [C]ommit' })
       -- Keymap to push the committed changes to the remote repository
