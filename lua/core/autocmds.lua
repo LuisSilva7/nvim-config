@@ -24,14 +24,14 @@ vim.api.nvim_create_autocmd('BufEnter', {
   end,
 })
 
--- Keep 12 lines of space at the end of the file
+-- Keep 10 lines of space at the end of the file
 vim.api.nvim_create_autocmd('CursorMoved', {
   pattern = '*',
   callback = function()
     local total_lines = vim.api.nvim_buf_line_count(0)
     local current_line = vim.api.nvim_win_get_cursor(0)[1]
 
-    if current_line >= total_lines - 12 then
+    if current_line >= total_lines - 10 then
       vim.cmd 'normal! zz'
     end
   end,
