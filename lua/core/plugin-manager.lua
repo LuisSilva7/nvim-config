@@ -25,7 +25,6 @@ require('lazy').setup {
   require 'plugins.treesitter',
   require 'plugins.autocompletion',
   require 'plugins.autoformatting',
-  require 'plugins.trouble',
   require 'plugins.misc',
   require 'plugins.dap',
   require 'plugins.springboot-nvim',
