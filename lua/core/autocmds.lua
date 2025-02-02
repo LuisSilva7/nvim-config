@@ -1,24 +1,6 @@
 -- Prevent LSP from overwriting treesitter color settings
 vim.highlight.priorities.semantic_tokens = 95 -- Or any number lower than 100, treesitter's priority level
 
--- Highlight on yank
-local highlight_group = vim.api.nvim_create_augroup('YankHighlight', { clear = true })
-vim.api.nvim_create_autocmd('TextYankPost', {
-  callback = function()
-    vim.highlight.on_yank()
-  end,
-  group = highlight_group,
-  pattern = '*',
-})
-
--- Setup our JDTLS server any time we open up a java file
-vim.cmd [[
-    augroup jdtls_lsp
-        autocmd!
-        autocmd FileType java lua require'config.jdtls'.setup_jdtls()
-    augroup end
-]]
-
 -- Restore cursor position when reopening files
 vim.api.nvim_create_autocmd('BufReadPost', {
   callback = function()
@@ -27,13 +9,6 @@ vim.api.nvim_create_autocmd('BufReadPost', {
     if line > 0 and line <= vim.api.nvim_buf_line_count(0) then
       vim.api.nvim_win_set_cursor(0, { line, col })
     end
-  end,
-})
-
--- Dont't create new lines with comments
-vim.api.nvim_create_autocmd('BufEnter', {
-  callback = function()
-    vim.opt.formatoptions = vim.opt.formatoptions - { 'c', 'r', 'o' }
   end,
 })
 
@@ -49,3 +24,28 @@ vim.api.nvim_create_autocmd('CursorMoved', {
     end
   end,
 })
+
+-- Highlight on yank
+local highlight_group = vim.api.nvim_create_augroup('YankHighlight', { clear = true })
+vim.api.nvim_create_autocmd('TextYankPost', {
+  callback = function()
+    vim.highlight.on_yank()
+  end,
+  group = highlight_group,
+  pattern = '*',
+})
+
+-- Dont't create new lines with comments
+vim.api.nvim_create_autocmd('BufEnter', {
+  callback = function()
+    vim.opt.formatoptions = vim.opt.formatoptions - { 'c', 'r', 'o' }
+  end,
+})
+
+-- Setup our JDTLS server any time we open up a java file
+vim.cmd [[
+    augroup jdtls_lsp
+        autocmd!
+        autocmd FileType java lua require'config.jdtls'.setup_jdtls()
+    augroup end
+]]
