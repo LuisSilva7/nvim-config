@@ -14,7 +14,9 @@ return {
         none_ls.builtins.formatting.prettier, -- JS, HTML, CSS, others
         none_ls.builtins.formatting.black, -- Python
         none_ls.builtins.formatting.goimports, -- Go
-        none_ls.builtins.formatting.clang_format, -- C/C++
+        none_ls.builtins.formatting.clang_format.with {
+          extra_args = { '--style={IndentWidth: 4}' },
+        }, -- C/C++
         none_ls.builtins.formatting.shfmt, -- Shell scripts
       },
       on_attach = function(client, bufnr)
