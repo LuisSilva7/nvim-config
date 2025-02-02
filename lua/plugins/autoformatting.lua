@@ -43,5 +43,8 @@ return {
       },
       automatic_installation = true,
     }
+
+    -- set up a vim motion for <Space> + c + f to automatically format our code based on which langauge server is active
+    vim.keymap.set('n', '<leader>cf', vim.lsp.buf.format, { desc = '[C]ode [F]ormat' })
   end,
 }
