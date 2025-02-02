@@ -61,11 +61,12 @@ vim.keymap.set('v', '>', '>gv', { noremap = true, silent = true })
 vim.keymap.set('v', '<leader>y', '"+y', { noremap = true, silent = true, desc = 'Copy to system clipboard' })
 vim.keymap.set('n', '<leader>y', '"+yy', { noremap = true, silent = true, desc = 'Copy line to system clipboard' })
 
--- copy without losing the register
-vim.keymap.set('x', '<leader>p', '"_dP', { noremap = true, silent = true, desc = 'Copy without losing register' })
+-- Paste without losing the register
+vim.keymap.set('x', '<leader>rp', '"_dP', { noremap = true, silent = true, desc = 'Paste without losing register' })
 
--- Copy from system clipboard
-vim.keymap.set('n', '<leader>p', '"+p', { noremap = true, silent = true, desc = 'Paste from system clipboard' })
+-- Paste from system clipboard
+vim.keymap.set('n', '<leader>p', 'o<Esc>"+p', { noremap = true, silent = true, desc = 'Paste from system clipboard down' })
+vim.keymap.set('n', '<leader>P', 'O<Esc>"+p', { noremap = true, silent = true, desc = 'Paste from system clipboard up' })
 vim.keymap.set('v', '<leader>p', '"+p', { noremap = true, silent = true, desc = 'Paste from system clipboard in visual mode' })
 
 -- Manage files
