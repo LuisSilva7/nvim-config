@@ -5,14 +5,14 @@ return {
     'williamboman/mason.nvim', -- Mason for automatic installation of LSPs
     'williamboman/mason-lspconfig.nvim', -- Integration of Mason with lspconfig
     'j-hui/fidget.nvim', -- Displays progress for LSP operations
-    "jay-babu/mason-nvim-dap.nvim", -- Automatic installation for debuggers
+    'jay-babu/mason-nvim-dap.nvim', -- Automatic installation for debuggers
 
     -- utility plugin for configuring the java language server for us
     {
-      "mfussenegger/nvim-jdtls",
+      'mfussenegger/nvim-jdtls',
       dependencies = {
-        "mfussenegger/nvim-dap", -- Dependency for debugging Java
-      }
+        'mfussenegger/nvim-dap', -- Dependency for debugging Java
+      },
     },
   },
 
@@ -30,7 +30,7 @@ return {
         'lua_ls', -- Lua LSP
         'rust_analyzer', -- Rust LSP
         'gopls', -- Go LSP
-        'tsserver', -- TypeScript LSP
+        'ts_ls', -- TypeScript LSP
         'cssls', -- CSS LSP
         'html', -- HTML LSP
         'pyright', -- Python LSP
@@ -86,24 +86,24 @@ return {
 
     vim.diagnostic.config {
       virtual_text = {
-        prefix = '●',  -- Adds a bullet point as a prefix for a cleaner look
+        prefix = '●', -- Adds a bullet point as a prefix for a cleaner look
         format = function(diagnostic)
           local code = diagnostic.code and string.format('[%s]', diagnostic.code) or ''
-          return string.format('%s %s', code, diagnostic.message)  -- Displays the error code along with the message
+          return string.format('%s %s', code, diagnostic.message) -- Displays the error code along with the message
         end,
       },
-      underline = false,  -- Disables underlining for a less intrusive appearance
-      update_in_insert = true,  -- Updates diagnostics in real-time while in insert mode
+      underline = false, -- Disables underlining for a less intrusive appearance
+      update_in_insert = true, -- Updates diagnostics in real-time while in insert mode
       float = {
-        focusable = true,  -- Prevents the diagnostic floating window from being focused
-        style = "minimal",  -- Uses a minimal style for the diagnostic popup
-        border = "rounded",  -- Adds rounded borders to the floating window
-        source = "if_many",  -- Displays the source only if there are multiple sources
-        header = "",  -- Removes the header from the diagnostic window
-        prefix = "",  -- Removes the prefix to keep messages clean
+        focusable = true, -- Prevents the diagnostic floating window from being focused
+        style = 'minimal', -- Uses a minimal style for the diagnostic popup
+        border = 'rounded', -- Adds rounded borders to the floating window
+        source = 'if_many', -- Displays the source only if there are multiple sources
+        header = '', -- Removes the header from the diagnostic window
+        prefix = '', -- Removes the prefix to keep messages clean
       },
       on_ready = function()
-        vim.cmd 'highlight DiagnosticVirtualText guibg=NONE'  -- Removes background color from inline error messages
+        vim.cmd 'highlight DiagnosticVirtualText guibg=NONE' -- Removes background color from inline error messages
       end,
     }
 
