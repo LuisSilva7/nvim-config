@@ -11,7 +11,7 @@ local function get_jdtls()
   local SYSTEM = 'linux'
   -- Obtain the path to configuration files for your specific operating system
   local config = jdtls_path .. '/config_' .. SYSTEM
-  -- Obtain the path to the Lombok jar
+  -- Obtain the path to the Lomboc jar
   local lombok = jdtls_path .. '/lombok.jar'
   return launcher, config, lombok
 end
@@ -42,7 +42,7 @@ local function get_workspace()
   -- Get the home directory of your operating system
   local home = os.getenv 'HOME'
   -- Declare a directory where you would like to store project information
-  local workspace_path = home .. '/projects/java'
+  local workspace_path = home .. '/projects/java/'
   -- Determine the project name
   local project_name = vim.fn.fnamemodify(vim.fn.getcwd(), ':p:h:t')
   -- Create the workspace directory by concatenating the designated workspace path and the project name
@@ -61,24 +61,28 @@ local function java_keymaps()
   vim.cmd "command! -buffer JdtJshell lua require('jdtls').jshell()"
 
   -- Set a Vim motion to <Space> + <Shift>J + o to organize imports in normal mode
-  vim.keymap.set('n', '<leader>Jo', "<Cmd> lua require('jdtls').organize_imports()<CR>", { desc = '[J]ava [O]rganize Imports' })
-
+  vim.keymap.set('n', '<leader>Jo', "<Cmd> lua require('jdtls').organize_imports()<CR>",
+    { desc = '[J]ava [O]rganize Imports' })
   -- Set a Vim motion to <Space> + <Shift>J + v to extract the code under the cursor to a variable
-  vim.keymap.set('n', '<leader>Jv', "<Cmd> lua require('jdtls').extract_variable()<CR>", { desc = '[J]ava Extract [V]ariable' })
-  vim.keymap.set('v', '<leader>Jv', "<Esc><Cmd> lua require('jdtls').extract_variable(true)<CR>", { desc = '[J]ava Extract [V]ariable' })
-
+  vim.keymap.set('n', '<leader>Jv', "<Cmd> lua require('jdtls').extract_variable()<CR>",
+    { desc = '[J]ava Extract [V]ariable' })
+  -- Set a Vim motion to <Space> + <Shift>J + v to extract the code selected in visual mode to a variable
+  vim.keymap.set('v', '<leader>Jv', "<Esc><Cmd> lua require('jdtls').extract_variable(true)<CR>",
+    { desc = '[J]ava Extract [V]ariable' })
   -- Set a Vim motion to <Space> + <Shift>J + <Shift>C to extract the code under the cursor to a static variable
-  vim.keymap.set('n', '<leader>JC', "<Cmd> lua require('jdtls').extract_constant()<CR>", { desc = '[J]ava Extract [C]onstant' })
-  vim.keymap.set('v', '<leader>JC', "<Esc><Cmd> lua require('jdtls').extract_constant(true)<CR>", { desc = '[J]ava Extract [C]onstant' })
-
+  vim.keymap.set('n', '<leader>JC', "<Cmd> lua require('jdtls').extract_constant()<CR>",
+    { desc = '[J]ava Extract [C]onstant' })
+  -- Set a Vim motion to <Space> + <Shift>J + <Shift>C to extract the code selected in visual mode to a static variable
+  vim.keymap.set('v', '<leader>JC', "<Esc><Cmd> lua require('jdtls').extract_constant(true)<CR>",
+    { desc = '[J]ava Extract [C]onstant' })
   -- Set a Vim motion to <Space> + <Shift>J + t to run the test method currently under the cursor
-  vim.keymap.set('n', '<leader>Jt', "<Cmd> lua require('jdtls').test_nearest_method()<CR>", { desc = '[J]ava [T]est Method' })
+  vim.keymap.set('n', '<leader>Jt', "<Cmd> lua require('jdtls').test_nearest_method()<CR>",
+    { desc = '[J]ava [T]est Method' })
   -- Set a Vim motion to <Space> + <Shift>J + t to run the test method that is currently selected in visual mode
-  vim.keymap.set('v', '<leader>Jt', "<Esc><Cmd> lua require('jdtls').test_nearest_method(true)<CR>", { desc = '[J]ava [T]est Method' })
-
+  vim.keymap.set('v', '<leader>Jt', "<Esc><Cmd> lua require('jdtls').test_nearest_method(true)<CR>",
+    { desc = '[J]ava [T]est Method' })
   -- Set a Vim motion to <Space> + <Shift>J + <Shift>T to run an entire test suite (class)
   vim.keymap.set('n', '<leader>JT', "<Cmd> lua require('jdtls').test_class()<CR>", { desc = '[J]ava [T]est Class' })
-
   -- Set a Vim motion to <Space> + <Shift>J + u to update the project configuration
   vim.keymap.set('n', '<leader>Ju', '<Cmd> JdtUpdateConfig<CR>', { desc = '[J]ava [U]pdate Config' })
 end
@@ -268,15 +272,6 @@ local function setup_jdtls()
     -- Code lens enables features such as code reference counts, implemenation counts, and more.
     vim.lsp.codelens.refresh()
 
-    require('lsp_signature').on_attach({
-      bind = true,
-      padding = '',
-      handler_opts = {
-        border = 'rounded',
-      },
-      hint_prefix = '󱄑 ',
-    }, bufnr)
-
     -- Setup a function that automatically runs every time a java file is saved to refresh the code lens
     vim.api.nvim_create_autocmd('BufWritePost', {
       pattern = { '*.java' },
@@ -303,3 +298,4 @@ end
 return {
   setup_jdtls = setup_jdtls,
 }
+

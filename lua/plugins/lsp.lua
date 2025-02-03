@@ -5,6 +5,13 @@ return {
     'williamboman/mason-lspconfig.nvim',
     'j-hui/fidget.nvim',
     'jay-babu/mason-nvim-dap.nvim',
+    -- utility plugin for configuring the java language server for us
+    {
+        "mfussenegger/nvim-jdtls",
+        dependencies = {
+            "mfussenegger/nvim-dap",
+        }
+    },
   },
 
   config = function()
