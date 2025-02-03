@@ -1,87 +1,71 @@
 return {
   'neovim/nvim-lspconfig',
   dependencies = {
-    'stevearc/conform.nvim', -- Plugin for code formatting
-    'williamboman/mason.nvim', -- Mason for automatic installation of LSPs
-    'williamboman/mason-lspconfig.nvim', -- Integration of Mason with lspconfig
-    'j-hui/fidget.nvim', -- Displays progress for LSP operations
-    'jay-babu/mason-nvim-dap.nvim', -- Automatic installation for debuggers
-
-    -- utility plugin for configuring the java language server for us
-    {
-      'mfussenegger/nvim-jdtls',
-      dependencies = {
-        'mfussenegger/nvim-dap', -- Dependency for debugging Java
-      },
-    },
+    'williamboman/mason.nvim',
+    'williamboman/mason-lspconfig.nvim',
+    'j-hui/fidget.nvim',
+    'jay-babu/mason-nvim-dap.nvim',
   },
 
   config = function()
-    -- Initialize fidget.nvim for showing LSP progress
     require('fidget').setup {}
-
-    -- Initialize Mason to install missing LSP servers
     require('mason').setup()
-
-    -- Integrating Mason with lspconfig to ensure specific LSP servers are installed
     require('mason-lspconfig').setup {
       ensure_installed = {
-        -- Specify which LSP servers to ensure are installed
-        'lua_ls', -- Lua LSP
-        'rust_analyzer', -- Rust LSP
-        'gopls', -- Go LSP
-        'ts_ls', -- TypeScript LSP
-        'cssls', -- CSS LSP
-        'html', -- HTML LSP
-        'pyright', -- Python LSP
-        'clangd', -- C/C++ LSP
-        'ruff', -- Python linting (similar to flake8)
-        'pylsp', -- Python LSP
-        'jsonls', -- JSON LSP
-        'yamlls', -- YAML LSP
-        'tailwindcss', -- Tailwind CSS LSP
-        'dockerls', -- Docker LSP
-        'sqlls', -- SQL LSP
-        'terraformls', -- Terraform LSP
-      },
-      handlers = {
-        -- Default handler to set up any LSP server
-        function(server_name)
-          require('lspconfig')[server_name].setup {}
-        end,
-
-        -- Lua language server (lua_ls) specific configuration
-        ['lua_ls'] = function()
-          local lspconfig = require 'lspconfig'
-          lspconfig.lua_ls.setup {
-            settings = {
-              Lua = {
-                runtime = { version = 'Lua 5.1' }, -- Specify Lua version
-                diagnostics = {
-                  globals = { 'bit', 'vim', 'it', 'describe', 'before_each', 'after_each' }, -- Global variables for Lua
-                },
-              },
-            },
-          }
-        end,
+        'lua_ls',
+        'rust_analyzer',
+        'gopls',
+        'ts_ls',
+        'pyright',
+        'clangd',
+        'jsonls',
+        'yamlls',
+        'dockerls',
+        'terraformls',
       },
     }
 
-    -- Ensure the required debug adapters are installed
-    require('mason-nvim-dap').setup {
-      ensure_installed = {
-        'java-debug-adapter', -- Java Debug Adapter
-        'java-test', -- Java Test Adapter
-        'debugpy', -- Python Debugger (debugpy)
-        'node-debug2-adapter', -- Node.js Debug Adapter for JS/TS
-        'vscode-js-debug', -- Another adapter for JS/TS
-        'cpptools', -- C/C++ Debug Adapter
-        'delve', -- Go Debugger (Delve)
-        'codelldb', -- Rust Debugger (codelldb)
-        'ruby-debug-ide', -- Ruby Debug Adapter
-        'php-debug-adapter', -- PHP Debug Adapter
-        'netcoredbg', -- .NET Debugger
-      },
+    local lspconfig = require 'lspconfig'
+
+    local capabilities = require('cmp_nvim_lsp').default_capabilities()
+
+    local default_setup = function(server)
+      lspconfig[server].setup {
+        capabilities = capabilities,
+      }
+    end
+
+    require('mason-lspconfig').setup_handlers {
+      default_setup,
+      ['gopls'] = function()
+        lspconfig.gopls.setup {
+          capabilities = capabilities,
+          settings = {
+            gopls = {
+              analyses = {
+                unusedparams = true,
+              },
+              staticcheck = true,
+              gofumpt = true,
+              usePlaceholders = true,
+              completeUnimported = true,
+            },
+          },
+        }
+      end,
+      ['lua_ls'] = function()
+        lspconfig.lua_ls.setup {
+          capabilities = capabilities,
+          settings = {
+            Lua = {
+              runtime = { version = 'LuaJIT' },
+              diagnostics = {
+                globals = { 'vim' },
+              },
+            },
+          },
+        }
+      end,
     }
 
     vim.diagnostic.config {
