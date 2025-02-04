@@ -57,12 +57,24 @@ vim.keymap.set('n', 'x', '"_x', { noremap = true, silent = true, desc = 'Delete 
 vim.keymap.set('v', '<', '<gv', { noremap = true, silent = true })
 vim.keymap.set('v', '>', '>gv', { noremap = true, silent = true })
 
+-- Move text up and down
+vim.keymap.set('v', '<A-j>', ":m '>+1<CR>gv=gv", { noremap = true, silent = true })
+vim.keymap.set('v', '<A-k>', ":m '<-2<CR>gv=gv", { noremap = true, silent = true })
+
+-- Visual Block --
+-- Move text up and down
+vim.keymap.set('x', 'J', ":m '>+1<CR>gv=gv", { noremap = true, silent = true })
+vim.keymap.set('x', 'K', ":m '<-2<CR>gv=gv", { noremap = true, silent = true })
+vim.keymap.set('x', '<A-j>', ":m '>+1<CR>gv=gv", { noremap = true, silent = true })
+vim.keymap.set('x', '<A-k>', ":m '<-2<CR>gv=gv", { noremap = true, silent = true })
+
 -- Copy to system clipboard
 vim.keymap.set('v', '<leader>y', '"+y', { noremap = true, silent = true, desc = 'Copy to system clipboard' })
 vim.keymap.set('n', '<leader>y', '"+yy', { noremap = true, silent = true, desc = 'Copy line to system clipboard' })
 
 -- Paste without losing the register
 vim.keymap.set('x', '<leader>rp', '"_dP', { noremap = true, silent = true, desc = 'Paste without losing register' })
+vim.keymap.set('v', 'p', '"_dP', { noremap = true, silent = true })
 
 -- Paste from system clipboard
 vim.keymap.set('n', '<leader>p', 'o<Esc>"+p', { noremap = true, silent = true, desc = 'Paste from system clipboard down' })
