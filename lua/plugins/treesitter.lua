@@ -63,7 +63,9 @@ return {
         'vimdoc',
       },
       highlight = { enable = true },
-      auto_install = true,
+
+      -- Automatically installs parser when opening a file
+      -- auto_install = true,
 
       autotag = {
         enable = true,
