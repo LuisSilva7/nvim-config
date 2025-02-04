@@ -1,46 +1,72 @@
 return {
-    "nvim-treesitter/nvim-treesitter",
-    dependencies = {
-        "windwp/nvim-ts-autotag"
-    },
-    build = ':TSUpdate',
-    config = function()
-        local ts_config = require("nvim-treesitter.configs")
+  'nvim-treesitter/nvim-treesitter',
+  dependencies = {
+    'windwp/nvim-ts-autotag',
+  },
+  build = ':TSUpdate',
+  config = function()
+    local ts_config = require 'nvim-treesitter.configs'
 
-        ts_config.setup({
-            ensure_installed = {
-              'lua',
-              'python',
-              'javascript',
-              'typescript',
-              'vimdoc',
-              'vim',
-              'regex',
-              'terraform',
-              'sql',
-              'dockerfile',
-              'toml',
-              'json',
-              'java',
-              'groovy',
-              'go',
-              'gitignore',
-              'graphql',
-              'yaml',
-              'make',
-              'cmake',
-              'markdown',
-              'markdown_inline',
-              'bash',
-              'tsx',
-              'css',
-              'html',
-            },
-            highlight = {enable = true},
+    ts_config.setup {
+      ensure_installed = {
+        -- Programming Languages
+        'bash',
+        'c',
+        'c_sharp',
+        'cpp',
+        'dart',
+        'elixir',
+        'go',
+        'gomod',
+        'gosum',
+        'groovy',
+        'java',
+        'javascript',
+        'lua',
+        'php',
+        'python',
+        'r',
+        'ruby',
+        'rust',
+        'solidity',
+        'typescript',
+        'vim',
+        'zig',
 
-            autotag = {
-                enable = true
-            }
-        })
-    end
+        -- Frameworks and Web
+        'css',
+        'graphql',
+        'html',
+        'tsx',
+        'vue',
+
+        -- Configuration and Infrastructure
+        'cmake',
+        'dockerfile',
+        'gitignore',
+        'json',
+        'make',
+        'nginx',
+        'sql',
+        'terraform',
+        'toml',
+        'yaml',
+
+        -- Documentation and Text Format
+        'csv',
+        'markdown',
+        'markdown_inline',
+        'query',
+        'regex',
+        'tmux',
+        'vimdoc',
+      },
+      highlight = { enable = true },
+      auto_install = true,
+
+      autotag = {
+        enable = true,
+      },
+    }
+  end,
 }
