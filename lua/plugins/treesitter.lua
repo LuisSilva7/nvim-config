@@ -1,6 +1,7 @@
 return {
   'nvim-treesitter/nvim-treesitter',
   dependencies = {
+    -- Automatically closes tags
     'windwp/nvim-ts-autotag',
   },
   build = ':TSUpdate',
